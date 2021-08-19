@@ -66,6 +66,8 @@ TARGET_KERNEL_CONFIG := OnePlusN200TMO_defconfig
 
 # Platform
 TARGET_BOARD_PLATFORM := holi
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno619
+QCOM_BOARD_PLATFORMS += holi
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
@@ -81,3 +83,46 @@ TW_EXTRA_LANGUAGES := true
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
+BOARD_HAS_NO_REAL_SDCARD := true
+RECOVERY_SDCARD_ON_DATA := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+
+# Use mke2fs to create ext4 images
+TARGET_USES_MKE2FS := true
+
+# A/B updater updatable partitions list. Keep in sync with the partition list
+# with "_a" and "_b" variants in the device. Note that the vendor can add more
+# more partitions to this list for the bootloader and radio.
+AB_OTA_PARTITIONS += \
+    boot \
+    system \
+    vendor \
+    vbmeta \
+    dtbo 
+
+# tell update_engine to not change dynamic partition table during updates
+# needed since our qti_dynamic_partitions does not include
+# vendor and odm and we also dont want to AB update them
+TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
+
+# Encryption
+PLATFORM_SECURITY_PATCH := 2099-12-31
+VENDOR_SECURITY_PATCH := 2099-12-31
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+BOARD_USES_METADATA_PARTITION := true
+
+# Extras
+BOARD_PROVIDES_GPTUTILS := true
+BOARD_SUPPRESS_SECURE_ERASE := true
+TW_USE_LEDS_HAPTICS := true
+USE_RECOVERY_INSTALLER := true
+TW_EXCLUDE_TWRPAPP := true
+TW_HAS_EDL_MODE := true
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+TW_NO_USB_STORAGE := true
+PLATFORM_VERSION := 16.1.0
