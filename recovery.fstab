@@ -1,21 +1,41 @@
+system                                                  /system                ext4    ro,barrier=1,discard                                 wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+system_ext                                              /system_ext            ext4    ro,barrier=1,discard                                 wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+product                                                 /product               ext4    ro,barrier=1,discard                                 wait,slotselect,avb=vbmeta_system,logical,first_stage_mount
+vendor                                                  /vendor                ext4    ro,barrier=1,discard                                 wait,slotselect,avb,logical,first_stage_mount
+odm                                                     /odm                   ext4    ro,barrier=1,discard                                 wait,slotselect,avb,logical,first_stage_mount
+/dev/block/bootdevice/by-name/opluslog                       /op2                   ext4    noatime,nosuid,nodev,barrier=1,data=ordered          wait,check
+/dev/block/bootdevice/by-name/metadata                  /metadata              ext4    noatime,nosuid,nodev,discard                         wait,check,formattable,wrappedkey,first_stage_mount
+/dev/block/bootdevice/by-name/userdata                  /data                  f2fs    noatime,nosuid,nodev,discard,inlinecrypt,reserve_root=32768,resgid=1065,fsync_mode=nobarrier    latemount,wait,check,formattable,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption,metadata_encryption=aes-256-xts:wrappedkey_v0,quota,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc
+/dev/block/bootdevice/by-name/persist                   /persist    ext4    noatime,nosuid,nodev,barrier=1                       wait
+#/dev/block/mmcblk1p1                       /sdcard         vfat    nosuid,nodev                                               wait
+/dev/block/bootdevice/by-name/boot         /boot           emmc    defaults                                                   defaults
+/dev/block/bootdevice/by-name/boot_a         /boot_a           emmc    defaults                                                   defaults
+/dev/block/bootdevice/by-name/boot_b         /boot_b           emmc    defaults                                                   defaults
+/dev/block/bootdevice/by-name/misc         /misc           emmc    defaults                                                   defaults
+#/dev/block/bootdevice/by-name/modemdump                 /modemdump  ext4    noatime,nosuid,nodev,barrier=1                       wait
+/dev/block/bootdevice/by-name/modem                     /firmware_mnt   vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0 wait,slotselect
+
+
+
 # mount point       fstype    device                                                                flags
-/system             ext4      system                                                                flags=display="System";backup=1;logical;
-/system_image       emmc      system                                                                flags=display="System image";backup=1;flashimg=1;logical;
-/system_ext         ext4      system_ext                                                            flags=display="System_ext";backup=1;logical;
-/system_ext_image   emmc      system_ext                                                            flags=display="System_ext image";backup=1;flashimg=1;logical;
-/product            ext4      product                                                               flags=display="Product";backup=1;logical;
-/product_image      emmc      product                                                               flags=display="Product image";backup=1;flashimg=1;logical;
-/vendor             ext4      vendor                                                                flags=display="Vendor";backup=1;logical;
-/vendor_image       emmc      vendor                                                                flags=display="Vendor image";backup=1;flashimg=1;logical;
-/odm                ext4      odm                                                                   flags=display="Odm";backup=1;logical;
-/odm_image          emmc      odm                                                                   flags=display="Odm image";backup=1;flashimg=1;logical;
-/op2                ext4      /dev/block/bootdevice/by-name/opluslog                                flags=display="Op2";
-/metadata           ext4      /dev/block/bootdevice/by-name/metadata                                flags=display="Metadata";
-/data               f2fs      /dev/block/bootdevice/by-name/userdata                                flags=display="Data";
-/persist            ext4      /dev/block/bootdevice/by-name/persist                                 flags=display="Persist";
-/persist_image      emmc      /dev/block/bootdevice/by-name/persist                                 flags=display="Persist image";backup=1;flashimg=1;
-/sdcard1            vfat      /dev/block/mmcblk1p1                                                  flags=display="Sdcard1";
-/boot               emmc      /dev/block/bootdevice/by-name/boot                                    flags=display="Boot";backup=1;flashimg=1;
-/misc               emmc      /dev/block/bootdevice/by-name/misc                                    flags=display="Misc";backup=1;flashimg=1;
-/modemdump          ext4      /dev/block/bootdevice/by-name/modemdump                               flags=display="Modemdump";
-/firmware_mnt       vfat      /dev/block/bootdevice/by-name/modem                                   flags=display="Firmware_mnt";
+#/boot               emmc        /dev/block/bootdevice/by-name/boot                                  flags=slotselect;display="Boot";backup=1;flashimg=1;
+#system		        /system		ext4                                                                flags=slotselect;logical;
+#system_ext          /system_ext ext4                                                                flags=slotselect;logical;
+#product		        /product    ext4											                    flags=slotselect;display="Product";logical;
+#vendor		        /vendor	    ext4                                                                flags=slotselect;display="Vendor";logical;
+#odm			        /odm	    ext4											                    flags=slotselect;display="Odm";logical;
+#/opluslog           ext4        /dev/block/bootdevice/by-name/opluslog                              flags=display="opluslog";
+#/metadata           ext4        /dev/block/bootdevice/by-name/metadata                              flags=display="Metadata";
+# /dev/block/bootdevice/by-name/userdata                  /data                  f2fs    noatime,nosuid,nodev,discard,inlinecrypt,reserve_root=32768,resgid=1065,fsync_mode=nobarrier    latemount,wait,check,formattable,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized+wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption,metadata_encryption=aes-256-xts:wrappedkey_v0,quota,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc
+#/dev/block/bootdevice/by-name/userdata                  /data                  f2fs    noatime,nosuid,nodev,discard,inlinecrypt,reserve_root=32768,resgid=1065,fsync_mode=nobarrier    latemount,wait,check,formattable,fileencryption=aes-256-xts:aes-256-cts:v2+emmc_optimized+wrappedkey_v0,metadata_encryption=aes-256-xts:wrappedkey_v0,keydirectory=/metadata/vold/metadata_encryption,quota,reservedsize=128M,checkpoint=fs
+#/persist            ext4        /dev/block/bootdevice/by-name/persist                               flags=display="Persist";
+#/persist_image      emmc        /dev/block/bootdevice/by-name/persist                               flags=display="Persist image";backup=1;flashimg=1;
+#/misc               emmc        /dev/block/bootdevice/by-name/misc                                  flags=display="Misc";backup=1;flashimg=1;
+#/modem              vfat        /dev/block/bootdevice/by-name/modem                                 flags=display="modem";slotselect;
+#/super              emmc        /dev/block/bootdevice/by-name/super        		                    flags=display="super";backup=1;flashimg=1;
+
+#/devices/platform/soc/4784000.sdhci/mmc_host*           /storage/sdcard1       vfat    nosuid,nodev                                         wait,voldmanaged=sdcard1:auto,encryptable=footer
+#/devices/platform/soc/*.ssusb/*.dwc3/xhci-hcd.*.auto*   /storage/usbotg        vfat    nosuid,nodev                                         wait,voldmanaged=usbotg:auto
+#/dev/block/bootdevice/by-name/modem                     /vendor/firmware_mnt   vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0 wait,slotselect
+#/dev/block/bootdevice/by-name/dsp                       /vendor/dsp            ext4    ro,nosuid,nodev,barrier=1                            wait,slotselect
+#/dev/block/bootdevice/by-name/bluetooth                 /vendor/bt_firmware    vfat    ro,shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337,context=u:object_r:bt_firmware_file:s0 wait,slotselect

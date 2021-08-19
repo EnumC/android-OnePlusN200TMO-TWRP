@@ -16,5 +16,5 @@
 # limitations under the License.
 #
 
-add_lunch_combo omni_OnePlusN200TMO-userdebug
-add_lunch_combo omni_OnePlusN200TMO-eng
+# add_lunch_combo twrp_OnePlusN200TMO-userdebug
+# add_lunch_combo twrp_OnePlusN200TMO-eng

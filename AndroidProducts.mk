@@ -17,4 +17,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-     $(LOCAL_DIR)/omni_OnePlusN200TMO.mk
+     $(LOCAL_DIR)/twrp_OnePlusN200TMO.mk
+
+COMMON_LUNCH_CHOICES := \
+    twrp_OnePlusN200TMO-user \
+    twrp_OnePlusN200TMO-userdebug \
+    twrp_OnePlusN200TMO-eng
