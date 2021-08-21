@@ -99,13 +99,29 @@ VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
 
 # TWRP Configuration
+# This TW_THEME flag replaces the older DEVICE_RESOLUTION flag. TWRP now uses scaling to stretch
+# any theme to fit the screen resolution. There are currently 5 settings which are:
+#   portrait_mdpi  = 320x480 480x800 480x854 540x960
+#   portrait_hdpi  = 720x1280 800x1280 1080x1920 1200x1920 1440x2560 1600x2560
+#   watch_mdpi     = 240x240 280x280 320x320
+#   landscape_mdpi = 800x480 1024x600 1024x768
+#   landscape_hdpi = 1280x800 1920x1200 2560x1600
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
-BOARD_HAS_NO_REAL_SDCARD := true
-RECOVERY_SDCARD_ON_DATA := true
+
+# BOARD_HAS_NO_REAL_SDCARD when "true" disables things like sdcard partitioning and may save you
+# some space if TWRP isn't fitting in your recovery patition
+#BOARD_HAS_NO_REAL_SDCARD := false
+# RECOVERY_SDCARD_ON_DATA when "true" enables proper handling of /data/media on devices that have
+# this folder for storage (most Honeycomb and devices that originally shipped with ICS like Galaxy
+# Nexus) This flag is not required for these types of devices though. If you do not define this
+# flag and also do not include any references to /sdcard, /internal_sd, /internal_sdcard, or /emmc
+# in your fstab, then we will automatically assume that the device is using emulated storage.
+# RECOVERY_SDCARD_ON_DATA := true
+
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_NO_SELECT_BUTTON := true
@@ -162,6 +178,9 @@ TW_NO_USB_STORAGE := true
 
 TARGET_NO_RECOVERY := true
 BOARD_USES_RECOVERY_AS_BOOT := true
+
+# Remove the ability to encrypt backups with a password
+TW_EXCLUDE_ENCRYPTED_BACKUPS := false
 
 # Decryption Fix for Some ROMs
 BOARD_AVB_RECOVERY_ADD_HASH_FOOTER_ARGS += \
