@@ -137,7 +137,7 @@ AB_OTA_PARTITIONS += \
     system \
     vendor \
     vbmeta \
-    dtbo 
+    dtbo
 
 # tell update_engine to not change dynamic partition table during updates
 # needed since our qti_dynamic_partitions does not include
