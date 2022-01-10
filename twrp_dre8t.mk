@@ -23,15 +23,15 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Inherit from OnePlusN200TMO device
-$(call inherit-product, device/oneplus/OnePlusN200TMO/device.mk)
+$(call inherit-product, device/oneplus/dre8t/device.mk)
 
 # Inherit some common twrp stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
 #$(call inherit-product, vendor/twrp/config/gsm.mk)
 
 # Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := OnePlusN200TMO
-PRODUCT_NAME := twrp_OnePlusN200TMO
+PRODUCT_DEVICE := dre8t
+PRODUCT_NAME := twrp_dre8t
 PRODUCT_BRAND := OnePlus
 PRODUCT_MODEL := OnePlus
 PRODUCT_MANUFACTURER := oneplus
