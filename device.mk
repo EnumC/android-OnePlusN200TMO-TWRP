@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/oneplus/OnePlusN200TMO
+LOCAL_PATH := device/oneplus/dre8t
 
 # A/B
 AB_OTA_PARTITIONS += \

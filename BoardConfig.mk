@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/oneplus/OnePlusN200TMO
+DEVICE_PATH := device/oneplus/dre8t
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
@@ -44,7 +44,7 @@ TARGET_USES_UEFI := true
 
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := OnePlusN200TMO
+TARGET_OTA_ASSERT_DEVICE := dre8t
 
 # File systems
 BOARD_HAS_LARGE_FILESYSTEM := true
@@ -69,8 +69,8 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-TARGET_KERNEL_SOURCE := kernel/oneplus/OnePlusN200TMO
-TARGET_KERNEL_CONFIG := OnePlusN200TMO_defconfig
+TARGET_KERNEL_SOURCE := kernel/oneplus/dre8t
+TARGET_KERNEL_CONFIG := dre8t_defconfig
 
 # $(warning TARGET_PLATFORM_VERSION == $(TARGET_PLATFORM_VERSION))
 # BOARD_KERNEL_IMAGE_NAME := Image.gz
